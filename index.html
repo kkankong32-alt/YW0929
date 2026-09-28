@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 동화·영상 수업자료 제작 연수 프롬프트 저장소</title>
+<style>
+:root{
+  --bg:#070707;
+  --panel:#141414;
+  --panel2:#1d1d1d;
+  --text:#f7f7f7;
+  --muted:#bdbdbd;
+  --line:#2a2a2a;
+  --red:#e50914;
+  --red2:#b20710;
+  --shadow:0 18px 44px rgba(0,0,0,.42);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{
+  margin:0;
+  font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 12% 0%,rgba(229,9,20,.21),transparent 28%),
+    radial-gradient(circle at 100% 16%,rgba(66,133,244,.09),transparent 22%),
+    linear-gradient(180deg,#050505 0%,#0a0a0a 42%,#0f0f0f 100%);
+  min-height:100vh;
+}
+.header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(16px);
+  background:rgba(7,7,7,.88);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.header-inner{
+  max-width:1360px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;gap:18px;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.02em;white-space:nowrap}
+.logo{
+  width:18px;height:34px;border-radius:3px;
+  background:linear-gradient(180deg,#ff2531,#e50914 58%,#9d050c);
+  box-shadow:0 0 24px rgba(229,9,20,.34);
+  transform:skew(-4deg);
+}
+.brand span{font-size:17px}
+.search{width:min(470px,48vw)}
+.search input{
+  width:100%;background:#181818;border:1px solid #333;border-radius:12px;
+  color:#fff;padding:12px 15px;font-size:16px;outline:none;
+}
+.search input:focus{border-color:#e50914;box-shadow:0 0 0 3px rgba(229,9,20,.15)}
+.wrap{max-width:1360px;margin:0 auto;padding:34px 24px 84px}
+.hero{
+  border-radius:28px;padding:46px 40px 42px;margin-bottom:20px;overflow:hidden;position:relative;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.77) 48%,rgba(0,0,0,.22) 100%),
+    radial-gradient(circle at 88% 34%,rgba(229,9,20,.57),transparent 32%),
+    #111;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow);
+}
+.hero:after{
+  content:"";position:absolute;right:-60px;top:-90px;width:380px;height:380px;
+  background:radial-gradient(circle,rgba(229,9,20,.43),rgba(229,9,20,.05) 48%,transparent 71%);
+  filter:blur(8px);pointer-events:none;
+}
+.kicker{font-size:14px;font-weight:900;color:#ff5b63;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(35px,5vw,60px);line-height:1.07;margin:13px 0 14px;letter-spacing:-.045em;max-width:980px}
+.hero p{max-width:900px;font-size:18px;line-height:1.7;color:#ddd;margin:0}
+.flowline{margin-top:22px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.flowline span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:8px 11px;border-radius:999px;font-size:14px;font-weight:800}
+.flowline b{color:#ff5b63}
+.quick-nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 28px}
+.quick-nav a{
+  color:#fff;text-decoration:none;background:#151515;border:1px solid #303030;
+  border-radius:999px;padding:10px 14px;font-size:14px;font-weight:800;
+}
+.quick-nav a:hover{border-color:#e50914;background:#1c1112}
+.notice{
+  border:1px solid rgba(229,9,20,.32);background:rgba(229,9,20,.08);
+  padding:14px 17px;border-radius:16px;color:#f1d8d9;line-height:1.65;font-size:15px;
+}
+.section{margin-top:40px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px}
+.section-title{font-size:29px;margin:0 0 7px;letter-spacing:-.03em}
+.section-desc{font-size:16px;line-height:1.65;color:#aaa;margin:0;max-width:900px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(390px,1fr));gap:18px}
+.card{
+  background:linear-gradient(180deg,#171717,#111);
+  border:1px solid #2a2a2a;border-radius:20px;overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-3px);border-color:#484848;box-shadow:0 20px 44px rgba(0,0,0,.38)}
+.card-top{padding:21px 22px 18px;border-bottom:1px solid #272727;background:linear-gradient(180deg,#1c1c1c,#171717)}
+.tool-row{margin-bottom:8px}
+.tool-badge{
+  display:inline-block;font-size:11px;font-weight:900;letter-spacing:.08em;
+  color:#ff747b;background:rgba(229,9,20,.09);border:1px solid rgba(229,9,20,.25);
+  border-radius:999px;padding:5px 8px;
+}
+.card-title{font-size:22px;font-weight:900;letter-spacing:-.025em;margin:0 0 14px;line-height:1.35}
+.label{font-size:12px;font-weight:900;color:#ff646c;letter-spacing:.09em;margin-bottom:6px}
+.situation{font-size:16.5px;line-height:1.68;color:#e9e9e9;margin:0;font-weight:650}
+.prompt{padding:18px 20px 20px}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.prompt-head .label{margin:0;color:#fff}
+.actions{display:flex;gap:8px}
+.copy-btn,.expand-btn{
+  border:0;border-radius:999px;color:#fff;padding:10px 14px;font-size:14px;font-weight:900;cursor:pointer;
+}
+.copy-btn{background:var(--red);box-shadow:0 8px 18px rgba(229,9,20,.22)}
+.copy-btn:hover{background:#f6121d}
+.expand-btn{background:#2a2a2a;border:1px solid #3c3c3c}
+.expand-btn:hover{background:#343434}
+.copy-btn:active,.expand-btn:active{transform:translateY(1px)}
+pre{
+  margin:0;background:#0b0b0b;border:1px solid #262626;border-radius:14px;
+  padding:18px;color:#fff;font-family:"D2Coding","Consolas","Noto Sans Mono CJK KR",monospace;
+  font-size:15.8px;line-height:1.72;white-space:pre-wrap;word-break:keep-all;
+  max-height:470px;overflow:auto;
+}
+pre.expanded{max-height:none}
+.empty{display:none;text-align:center;color:#bbb;font-size:18px;padding:34px;border:1px solid #2a2a2a;border-radius:18px;background:#121212;margin-top:20px}
+.footer{margin-top:48px;text-align:center;color:#777;font-size:13px;line-height:1.7}
+@media(max-width:760px){
+  .header-inner{align-items:flex-start;flex-direction:column}
+  .brand span{font-size:16px}
+  .search{width:100%}
+  .wrap{padding:24px 14px 60px}
+  .hero{padding:32px 22px}
+  .grid{grid-template-columns:1fr}
+  .card-title{font-size:20px}
+  .situation{font-size:16px}
+  pre{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <div class="brand"><div class="logo"></div><span>AI 동화·영상 연수 프롬프트 저장소</span></div>
+    <div class="search"><input id="search" type="text" placeholder="프롬프트 검색 · 예: Storybook, Short, 2×2, 동화책, 한글" /></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="kicker">TEACHER TRAINING · PROMPT LIBRARY</div>
+    <h1>AI 동화로 만드는 수업의 첫 1분</h1>
+    <p>초3 사회 교과서 한 파일을 끝까지 재사용해 그림동화, 동화형 슬라이드, 질문 영상, Flow 스토리보드 영상, 완성형 동화책 파일까지 만드는 연수용 프롬프트 저장소입니다.</p>
+    <div class="flowline">
+      <span>교과서 PDF</span><b>→</b><span>Storybook</span><b>→</b><span>Notebook 슬라이드</span><b>→</b><span>Short / Explainer</span><b>→</b><span>Flow</span><b>→</b><span>ChatGPT PPTX/PDF</span>
+    </div>
+  </section>
+
+  <div class="quick-nav"><a href="#storybook">Storybook</a><a href="#notebook">Notebook 슬라이드</a><a href="#video">Notebook 영상</a><a href="#flow">Flow</a><a href="#chatgpt">ChatGPT</a></div>
+  <div class="notice"><strong>공통 원칙</strong> · 자료에 근거하기 · 정답을 먼저 말하지 않기 · 질문으로 끝내기 · 결과물을 그대로 쓰지 말고 교사가 교과 정확성·학생 수준·수업 목적을 다시 확인하기</div>
+
+  
+  <section class="section" id="storybook">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Gemini Storybook</h2>
+        <p class="section-desc">교과서 PDF를 빠르게 그림동화로 바꾸고, 수정·공유까지 경험합니다.</p>
+      </div>
+    </div>
+    <div class="grid">
+      
+      <article class="card" data-search="story book gemini 그림동화 교과서 동기유발 Gemini Storybook 1. Storybook 한 번에 만들기 교과서 PDF를 올린 뒤 첫 그림동화를 생성할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Storybook</span></div>
+          <h3 class="card-title">1. Storybook 한 번에 만들기</h3>
+          <div class="label">상황</div>
+          <p class="situation">교과서 PDF를 올린 뒤 첫 그림동화를 생성할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p1">전체 보기</button>
+              <button class="copy-btn" data-target="p1">복사</button>
+            </div>
+          </div>
+          <pre id="p1">첨부한 초등학교 3학년 사회 교과서 자료를 바탕으로
+수업 도입에 사용할 storybook을 만들어 줘.
+
+[수업 주제]
+교통의 변화로 달라진 사람들의 생활 모습
+
+[대상]
+초등학교 3학년
+
+[목적]
+개념을 설명하는 학습 만화가 아니라,
+수업을 시작할 때 학생들의 호기심을 일으키는 짧은 이야기로 만들어 줘.
+
+[이야기]
+옛날에 살던 어린이 &#x27;도윤&#x27;과
+오늘날에 사는 어린이 &#x27;하린&#x27;이
+각자의 시대에서 먼 곳에 있는 같은 목적지로 떠난다.
+
+두 어린이가 이동하는 모습을 번갈아 보여 주면서
+옛날과 오늘날의 교통수단과 이동 모습이 자연스럽게 비교되도록 해 줘.
+
+첨부한 교과서에 제시된 내용과 어긋나는 사실은 넣지 말고,
+초등학교 3학년이 이해하기 쉬운 표현을 사용해 줘.
+
+중요:
+처음부터
+&#x27;교통의 발달로 생활이 편리해졌다&#x27;와 같은 정답을 설명하지 마.
+
+학생들이 이야기를 보면서 차이를 스스로 발견하게 해 줘.
+
+마지막 페이지에서는 이야기를 멈추고 큰 글씨로
+
+“교통수단이 달라지면서
+사람들의 생활은 어떻게 달라졌을까요?”
+
+라고 질문하며 끝내 줘.
+
+따뜻하고 재미있는 어린이 그림책 스타일로 만들고,
+등장인물의 모습이 페이지마다 일관되게 보이도록 해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="storybook 수정 글 줄이기 인물 일관성 Gemini Storybook 2. 글과 설명을 줄여 다시 만들기 첫 결과가 길거나 설명식일 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Storybook</span></div>
+          <h3 class="card-title">2. 글과 설명을 줄여 다시 만들기</h3>
+          <div class="label">상황</div>
+          <p class="situation">첫 결과가 길거나 설명식일 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p2">전체 보기</button>
+              <button class="copy-btn" data-target="p2">복사</button>
+            </div>
+          </div>
+          <pre id="p2">수업 도입용으로는 글이 조금 많아.
+
+각 페이지의 글을 2~3문장 이내로 줄여 줘.
+설명보다 등장인물의 행동과 대화를 많이 사용해 줘.
+
+그리고 마지막 질문에 대한 정답이나 힌트는
+앞부분에서 너무 직접적으로 알려주지 마.
+
+두 주인공의 외모와 옷은 모든 페이지에서
+가능한 한 일관되게 유지해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="storybook 동기유발 사건 질문 수정 Gemini Storybook 3. 동기유발형으로 한 번 더 다듬기 사건과 마지막 질문을 더 강하게 만들 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Storybook</span></div>
+          <h3 class="card-title">3. 동기유발형으로 한 번 더 다듬기</h3>
+          <div class="label">상황</div>
+          <p class="situation">사건과 마지막 질문을 더 강하게 만들 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p3">전체 보기</button>
+              <button class="copy-btn" data-target="p3">복사</button>
+            </div>
+          </div>
+          <pre id="p3">이 storybook을
+초등학교 사회 수업의 &#x27;동기유발&#x27;에 더 적합하게 수정해 줘.
+
+첫 페이지에서
+학생들이 “어? 왜 이렇게 오래 걸리지?”라고 궁금해할 만한
+사건을 먼저 보여 줘.
+
+중간에는 두 시대의 이동 방법 차이가
+그림을 통해 잘 드러나도록 해 줘.
+
+마지막 페이지에서는 정답을 설명하지 말고
+
+“두 어린이의 하루가 이렇게 달랐던 까닭은 무엇일까요?”
+
+“교통의 변화는 사람들의 생활을 어떻게 바꾸었을까요?”
+
+두 질문만 제시해 줘.</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="notebook">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Gemini Notebook · 슬라이드</h2>
+        <p class="section-desc">같은 교과서 소스를 ‘발표자료’가 아니라 ‘그림동화책 슬라이드’로 변환합니다.</p>
+      </div>
+    </div>
+    <div class="grid">
+      
+      <article class="card" data-search="notebook 슬라이드 그림동화책 7 8장 Gemini Notebook 4. 그림동화책 형식 슬라이드 만들기 Notebook 슬라이드를 실제 동화책처럼 만들 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Notebook</span></div>
+          <h3 class="card-title">4. 그림동화책 형식 슬라이드 만들기</h3>
+          <div class="label">상황</div>
+          <p class="situation">Notebook 슬라이드를 실제 동화책처럼 만들 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p4">전체 보기</button>
+              <button class="copy-btn" data-target="p4">복사</button>
+            </div>
+          </div>
+          <pre id="p4">첨부된 초등학교 3학년 사회 교과서 자료를 바탕으로
+수업 도입에 사용할 “그림동화책 형식의 슬라이드”를 만들어 줘.
+
+중요:
+이 자료는 일반 발표용 PPT가 아니라,
+초등학생에게 보여 주는 짧은 그림동화책이어야 해.
+각 슬라이드는 책의 한 페이지처럼 구성하고,
+그림이 화면의 중심이 되게 해 줘.
+
+[주제]
+교통의 변화로 달라진 사람들의 생활 모습
+
+[대상]
+초등학교 3학년
+
+[목적]
+학생들이 이야기를 보면서
+옛날과 오늘날의 이동 모습을 자연스럽게 비교하고,
+마지막에 탐구 질문에 대해 생각하게 만드는
+수업 도입용 그림동화책을 만들어 줘.
+
+[형식]
+- 총 7~8장
+- 각 슬라이드는 그림동화책의 한 페이지처럼 구성
+- 각 슬라이드의 글은 최대 1~2문장
+- 긴 설명문, 목록, 정리 문장 금지
+- 교과 개념을 직접 설명하지 말고 이야기와 장면으로 보여 줄 것
+- 따뜻하고 흥미로운 어린이 그림책 분위기
+- 등장인물의 외모와 분위기는 슬라이드마다 일관되게 유지
+
+[등장인물]
+- 옛날에 사는 어린이 1명
+- 오늘날에 사는 어린이 1명
+
+[이야기 흐름]
+1장: 표지 또는 도입 장면
+- 옛날 어린이와 오늘날 어린이가 각각 길을 떠나려는 장면
+- 제목 느낌이 나게 구성
+- 학생이 “어? 둘 다 어디 가는 거지?” 하고 궁금해지게
+
+2장: 옛날 어린이의 출발
+- 먼 곳으로 가기 위해 길을 떠나는 모습
+- 이동이 쉽지 않아 보이게 표현
+
+3장: 옛날 어린이의 긴 여행
+- 배나 말 등 교과서에 나온 옛날의 이동 모습을 바탕으로
+  시간이 오래 걸리는 여행 장면
+
+4장: 오늘날 어린이의 출발
+- 같은 목적지로 떠나는 오늘날 어린이의 모습
+- 기차나 오늘날 교통수단을 이용하는 장면
+
+5장: 오늘날 어린이의 빠른 이동
+- 비교적 빠르고 편리하게 이동하는 모습
+- 옛날과 차이가 느껴지게 표현
+
+6장: 두 여행의 비교 장면
+- 옛날 어린이와 오늘날 어린이의 이동 모습을 한 장면 안에서 비교
+- 설명보다 그림으로 차이가 보이게 해 줘
+
+7장: 생활 모습의 변화가 드러나는 장면
+- 교통의 변화로 사람들이 먼 곳을 오가고,
+  물건을 주고받고,
+  다른 지역과 이어지는 생활 모습을
+  교과서 내용에 맞게 간단히 보여 줘
+- 여기서도 정답을 직접 설명하지 말 것
+
+8장: 마지막 질문
+- 정답, 요약, 해설 없이
+  “교통의 변화로 사람들의 생활 모습은 어떻게 달라졌을까요?”
+  라는 질문만 크게 제시하며 끝내 줘
+- 그림동화책의 마지막 페이지처럼 여운 있게 마무리
+
+[중요한 제한]
+- 첨부한 교과서 자료에 근거할 것
+- 교과서에 없는 사실이나 수치를 임의로 추가하지 말 것
+- 초등학교 3학년이 이해하기 쉬운 쉬운 말 사용
+- 설명문보다 이야기, 장면, 대사 중심
+- 각 페이지는 그림이 80%, 글이 20% 정도가 되도록 구성
+- 페이지마다 글이 많아지지 않게 할 것
+- 마지막까지 정답을 직접 설명하지 말 것
+
+일반 발표자료처럼 만들지 말고,
+실제 그림동화책을 한 장씩 넘겨보는 느낌으로 구성해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="notebook 개요 장면 핵심문장 궁금증 Gemini Notebook 5. 만들기 전에 슬라이드 개요부터 받기 AI에게 장면 흐름을 먼저 기획시키고 싶을 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Notebook</span></div>
+          <h3 class="card-title">5. 만들기 전에 슬라이드 개요부터 받기</h3>
+          <div class="label">상황</div>
+          <p class="situation">AI에게 장면 흐름을 먼저 기획시키고 싶을 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p5">전체 보기</button>
+              <button class="copy-btn" data-target="p5">복사</button>
+            </div>
+          </div>
+          <pre id="p5">이 자료를 바탕으로 초등학교 3학년 사회 수업의
+도입에 사용할 6~8장의 이야기형 슬라이드를 만들려고 해.
+
+정답을 먼저 가르치지 않고,
+학생들이 교통의 변화로 달라진 생활 모습을
+스스로 발견하게 만들고 싶어.
+
+슬라이드를 아직 만들지 말고,
+먼저 각 슬라이드의
+
+1. 장면
+2. 핵심 문장
+3. 학생에게 생기게 할 궁금증
+
+을 표로 기획해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="notebook 수정 그림책 글 줄이기 Gemini Notebook 6. PPT 느낌을 줄이고 동화책답게 수정하기 글이 많거나 발표자료처럼 나왔을 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Notebook</span></div>
+          <h3 class="card-title">6. PPT 느낌을 줄이고 동화책답게 수정하기</h3>
+          <div class="label">상황</div>
+          <p class="situation">글이 많거나 발표자료처럼 나왔을 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p6">전체 보기</button>
+              <button class="copy-btn" data-target="p6">복사</button>
+            </div>
+          </div>
+          <pre id="p6">이 슬라이드를 더 그림동화책답게 수정해 줘.
+
+각 페이지의 글을 더 줄이고,
+설명문 대신 짧은 내레이션이나 대사 중심으로 바꿔 줘.
+
+불릿포인트나 학습자료 같은 표현은 모두 없애고,
+큰 그림과 짧은 글이 중심이 되게 해 줘.
+
+일반 발표자료가 아니라
+실제 어린이 그림책을 넘겨보는 느낌으로 수정해 줘.</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="video">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Gemini Notebook · 동영상</h2>
+        <p class="section-desc">만든 슬라이드 PDF를 다시 소스로 넣어 Short와 Explainer를 비교합니다.</p>
+      </div>
+    </div>
+    <div class="grid">
+      
+      <article class="card" data-search="short 동영상 notebook 질문 동기유발 Gemini Notebook 7. Short — 질문을 남기는 영상 동기유발 슬라이드 PDF만 선택하고 ‘왜 그럴까?’를 남길 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Notebook</span></div>
+          <h3 class="card-title">7. Short — 질문을 남기는 영상</h3>
+          <div class="label">상황</div>
+          <p class="situation">동기유발 슬라이드 PDF만 선택하고 ‘왜 그럴까?’를 남길 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p7">전체 보기</button>
+              <button class="copy-btn" data-target="p7">복사</button>
+            </div>
+          </div>
+          <pre id="p7">선택한 소스는 초등학교 3학년 사회 수업 도입을 위해 만든
+동기유발 슬라이드 자료입니다.
+
+이 자료를 바탕으로
+초등학생이 흥미롭게 볼 수 있는 짧은 질문형 영상으로 만들어 주세요.
+
+[영상 목적]
+이 영상은 교과 내용을 설명하는 강의 영상이 아니라,
+학생들이 옛날과 오늘날의 이동 모습을 비교하며
+궁금증을 느끼고 수업에 몰입하도록 만드는 동기유발 영상입니다.
+
+[영상 형식]
+- Short 형식
+- 짧고 몰입감 있게 구성
+- 이야기 흐름이 자연스럽게 이어지게 할 것
+- 초등학교 3학년이 이해하기 쉬운 한국어 사용
+- 따뜻하고 친근한 어린이 동화 분위기
+- 설명보다 장면 중심
+- 마지막까지 정답을 직접 설명하지 말 것
+
+[영상 흐름]
+1. 같은 곳으로 떠나는 두 인물을 짧게 보여 준다.
+2. 옛날 어린이의 이동은 오래 걸리고 쉽지 않다는 점을 보여 준다.
+3. 오늘날 어린이의 이동은 더 빠르고 편리하다는 점을 보여 준다.
+4. 두 이동 모습의 차이가 자연스럽게 느껴지도록 비교한다.
+5. 결론이나 정답은 설명하지 않는다.
+6. 마지막 화면에서 다음 질문을 크게 제시하며 끝낸다.
+
+[마지막 질문]
+“두 사람의 여행은 왜 이렇게 달랐을까요?”
+“교통의 변화로 사람들의 생활 모습은 어떻게 달라졌을까요?”
+
+[주의]
+- 수업 정답을 먼저 설명하지 말 것
+- 요약식 설명보다 짧은 이야기처럼 구성할 것
+- 글이 너무 많지 않게 할 것
+- 학생이 영상을 본 뒤 바로 이야기하고 싶어지게 만들 것</pre>
+        </div>
+      </article>
+      <article class="card" data-search="explainer notebook 설명형 교과서 Gemini Notebook 8. Explainer — 이해를 돕는 영상 동기유발 슬라이드 + 원본 교과서를 함께 사용해 설명형 영상을 만들 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Notebook</span></div>
+          <h3 class="card-title">8. Explainer — 이해를 돕는 영상</h3>
+          <div class="label">상황</div>
+          <p class="situation">동기유발 슬라이드 + 원본 교과서를 함께 사용해 설명형 영상을 만들 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p8">전체 보기</button>
+              <button class="copy-btn" data-target="p8">복사</button>
+            </div>
+          </div>
+          <pre id="p8">선택한 소스는 초등학교 3학년 사회 수업 자료입니다.
+동기유발 슬라이드의 이야기 흐름을 살리되,
+원본 교과서 내용에 근거하여
+짧고 이해하기 쉬운 설명형 영상으로 만들어 주세요.
+
+[영상 목적]
+이 영상은 학생들이
+교통의 변화로 생활 모습이 어떻게 달라졌는지
+쉽게 이해하도록 돕는 짧은 설명형 영상입니다.
+
+[영상 형식]
+- Explainer 형식
+- 초등학교 3학년 수준의 쉬운 한국어 사용
+- 설명은 짧고 명확하게
+- 장면과 설명이 자연스럽게 연결되게 할 것
+- 교과서에 근거한 정확한 내용으로 구성할 것
+- 지나치게 길거나 딱딱한 강의처럼 만들지 말 것
+
+[영상 흐름]
+1. “같은 곳을 가는데 왜 이렇게 다를까요?”라는 질문으로 시작한다.
+2. 옛날 사람들은 이동에 오랜 시간이 걸리고 여러 방법을 이용했다는 점을 보여 준다.
+3. 오늘날 사람들은 더 빠르고 편리한 교통수단을 이용한다는 점을 보여 준다.
+4. 교통수단의 변화로 먼 곳을 오가고, 물건을 운반하고,
+   다른 지역과 교류하는 생활이 달라졌다는 점을 간단히 보여 준다.
+5. 마지막에는 핵심 질문을 다시 제시하거나, 짧게 생각해 보게 하며 마무리한다.
+
+[마지막 마무리]
+정답을 길게 설명하기보다,
+“교통의 변화는 사람들의 생활을 어떻게 바꾸었을까요?”
+라는 질문으로 다시 생각하게 해 주세요.
+
+[주의]
+- 교과서에 없는 사실은 추가하지 말 것
+- 전문 용어를 어렵게 설명하지 말 것
+- 한 번 보고 이해할 수 있을 만큼 간결하게 만들 것
+- 설명형이지만 이야기의 흐름도 어느 정도 유지할 것</pre>
+        </div>
+      </article>
+      <article class="card" data-search="영상 수정 short explainer 보정 Gemini Notebook 9. 영상 결과 보정 3종 Short/Explainer 결과가 설명적이거나 딱딱하거나 부족할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Gemini Notebook</span></div>
+          <h3 class="card-title">9. 영상 결과 보정 3종</h3>
+          <div class="label">상황</div>
+          <p class="situation">Short/Explainer 결과가 설명적이거나 딱딱하거나 부족할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p9">전체 보기</button>
+              <button class="copy-btn" data-target="p9">복사</button>
+            </div>
+          </div>
+          <pre id="p9">[Short가 너무 설명적일 때]
+설명문을 줄이고,
+더 짧은 동화 영상처럼 수정해 주세요.
+장면 중심으로 구성하고,
+마지막 질문의 여운이 더 크게 남도록 만들어 주세요.
+정답을 직접 설명하지 말아 주세요.
+
+[Explainer가 너무 딱딱할 때]
+설명은 유지하되,
+너무 강의처럼 딱딱하지 않게 수정해 주세요.
+초등학교 3학년이 친근하게 느낄 수 있도록
+짧은 이야기 흐름과 쉬운 표현을 사용해 주세요.
+
+[Explainer의 설명이 부족할 때]
+교과서에 근거하여
+교통수단의 변화와 생활 모습의 변화를
+조금 더 분명하게 드러내 주세요.
+다만 초등학교 3학년 수준에 맞게
+간단하고 짧게 설명해 주세요.</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="flow">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Google Flow · 기본 + Agent</h2>
+        <p class="section-desc">기본 이미지·영상 생성부터 2×2 스토리보드 Agent 워크플로까지 연결합니다.</p>
+      </div>
+    </div>
+    <div class="grid">
+      
+      <article class="card" data-search="flow 이미지 생성 수업 장면 Google Flow 10. 기본 — 수업용 이미지 생성 Flow에서 먼저 동기유발 장면 한 장을 만들 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Google Flow</span></div>
+          <h3 class="card-title">10. 기본 — 수업용 이미지 생성</h3>
+          <div class="label">상황</div>
+          <p class="situation">Flow에서 먼저 동기유발 장면 한 장을 만들 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p10">전체 보기</button>
+              <button class="copy-btn" data-target="p10">복사</button>
+            </div>
+          </div>
+          <pre id="p10">초등학교 3학년 사회 수업의 동기유발에 사용할 이미지를 만들어 줘.
+
+주제:
+교통의 변화로 달라진 사람들의 생활 모습
+
+장면:
+옛날에 사는 어린이가 먼 곳으로 여행을 떠나기 직전,
+길 앞에 멈춰 서서 멀리 이어진 길을 바라보고 있다.
+
+조건:
+- 학생들이 “저 먼 곳까지 어떻게 갔을까?”라는 궁금증을 느끼게 할 것
+- 따뜻하고 세련된 어린이 그림동화 스타일
+- 주인공의 감정과 상황이 한눈에 보이게
+- 장면은 단순하고 명확하게
+- 화면에 글자, 말풍선, 자막은 넣지 말 것
+- 이후 이미지→영상으로 움직이기 좋은 구도
+- 16:9 가로 화면</pre>
+        </div>
+      </article>
+      <article class="card" data-search="flow 이미지 영상 8초 카메라 Google Flow 11. 기본 — 이미지에서 8초 영상 만들기 생성한 장면을 짧고 자연스럽게 움직일 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Google Flow</span></div>
+          <h3 class="card-title">11. 기본 — 이미지에서 8초 영상 만들기</h3>
+          <div class="label">상황</div>
+          <p class="situation">생성한 장면을 짧고 자연스럽게 움직일 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p11">전체 보기</button>
+              <button class="copy-btn" data-target="p11">복사</button>
+            </div>
+          </div>
+          <pre id="p11">이 이미지를 약 8초짜리 수업 동기유발 영상으로 만들어 줘.
+
+영상 흐름:
+- 주인공이 잠시 먼 길을 바라본다.
+- 천천히 2~3걸음 앞으로 움직인다.
+- 바람에 옷과 주변 풀이 아주 살짝 움직인다.
+- 카메라는 천천히 뒤로 빠진다.
+- 마지막에는 앞으로 가야 할 긴 길이 더 크게 드러난다.
+
+조건:
+- 원본 이미지의 캐릭터, 옷, 그림체, 배경 분위기를 최대한 유지할 것
+- 움직임은 자연스럽고 과하지 않게
+- 장면 전환 없이 하나의 장면으로 유지
+- 카메라 움직임은 하나만 사용할 것
+- 화면에 새로운 글자나 자막을 만들지 말 것
+- 마지막에 학생들이 “저 먼 곳까지 어떻게 갔을까?”라고 궁금해하게 만들 것</pre>
+        </div>
+      </article>
+      <article class="card" data-search="flow agent 에이전트 4장면 스토리보드 Google Flow 12. Agent 시작 — 4장면 기획부터 맡기기 에이전트에게 전체 작업 흐름을 맡겨 ‘에이전트다운’ 제작을 시작할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Google Flow</span></div>
+          <h3 class="card-title">12. Agent 시작 — 4장면 기획부터 맡기기</h3>
+          <div class="label">상황</div>
+          <p class="situation">에이전트에게 전체 작업 흐름을 맡겨 ‘에이전트다운’ 제작을 시작할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p12">전체 보기</button>
+              <button class="copy-btn" data-target="p12">복사</button>
+            </div>
+          </div>
+          <pre id="p12">나는 초등학교 3학년 사회 수업의 동기유발 영상을 만들고 싶어.
+
+주제는
+‘교통의 변화로 달라진 사람들의 생활 모습’이다.
+
+너는 지금부터 내 영상 제작 에이전트다.
+
+목표:
+1. 먼저 8초 영상에 맞는 4장면 스토리보드를 기획하고
+2. 그 스토리보드를 2×2 이미지 1장으로 생성하고
+3. 마지막으로 그 스토리보드를 기반으로 하나의 짧은 영상으로 연결하는 것이다.
+
+중요:
+- 각 단계에서 생성 전에 먼저 계획을 보여 주고 내 확인을 받아라.
+- 초등학교 3학년용 수업 자료답게 쉽고 따뜻하고 직관적으로 구성하라.
+- 정답을 설명하지 말고 궁금증을 남겨라.
+- 크레딧을 아끼기 위해 불필요하게 여러 이미지를 따로 생성하지 마라.
+
+먼저 4장면 기획안부터 제안해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="flow agent 2x2 계획 Google Flow 13. Agent — 2×2 구성 먼저 구체화하기 이미지 생성 전에 네 컷의 인물·배경·감정·구도를 점검할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Google Flow</span></div>
+          <h3 class="card-title">13. Agent — 2×2 구성 먼저 구체화하기</h3>
+          <div class="label">상황</div>
+          <p class="situation">이미지 생성 전에 네 컷의 인물·배경·감정·구도를 점검할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p13">전체 보기</button>
+              <button class="copy-btn" data-target="p13">복사</button>
+            </div>
+          </div>
+          <pre id="p13">좋아. 이 4장면 구성이 좋아.
+
+이제 이 흐름을 바탕으로
+2×2 구성의 스토리보드 이미지 1장을 만들고 싶어.
+
+아직 생성하지 말고,
+먼저 4컷의 화면 구성을 더 구체적으로 정리해 줘.
+
+각 칸마다
+- 인물
+- 배경
+- 행동
+- 감정
+- 구도
+
+를 짧게 정리해 줘.
+
+네 칸이 한 이야기처럼 자연스럽게 이어지게 해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="flow 2x2 스토리보드 이미지 크레딧 Google Flow 14. Agent — 2×2 스토리보드 1장 생성 한 번의 이미지 생성으로 4장면을 확보할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Google Flow</span></div>
+          <h3 class="card-title">14. Agent — 2×2 스토리보드 1장 생성</h3>
+          <div class="label">상황</div>
+          <p class="situation">한 번의 이미지 생성으로 4장면을 확보할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p14">전체 보기</button>
+              <button class="copy-btn" data-target="p14">복사</button>
+            </div>
+          </div>
+          <pre id="p14">좋아. 이제 방금 정리한 내용을 바탕으로
+2×2 구성의 스토리보드 이미지 1장을 생성해 줘.
+
+조건:
+- 4개의 칸이 한 장에 보이게
+- 각 칸은 서로 이어지는 같은 이야기 장면일 것
+- 인물의 얼굴, 옷, 그림체는 네 칸에서 일관되게 유지
+- 따뜻한 어린이 그림동화 스타일
+- 초등학교 수업 자료에 어울리게
+- 글자, 말풍선, 자막은 넣지 말 것
+- 각 칸의 차이가 분명히 보이게
+- 영상으로 이어질 수 있도록 장면 순서가 자연스러울 것
+
+이미지는 1개만 생성해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="flow 스토리보드 8초 영상 Google Flow 15. Agent — 스토리보드를 8초 영상으로 2×2 이미지를 하나의 짧은 영상으로 연결할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">Google Flow</span></div>
+          <h3 class="card-title">15. Agent — 스토리보드를 8초 영상으로</h3>
+          <div class="label">상황</div>
+          <p class="situation">2×2 이미지를 하나의 짧은 영상으로 연결할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p15">전체 보기</button>
+              <button class="copy-btn" data-target="p15">복사</button>
+            </div>
+          </div>
+          <pre id="p15">좋아. 이제 방금 만든 2×2 스토리보드 이미지를 바탕으로
+하나의 8초짜리 짧은 영상으로 만들어 줘.
+
+조건:
+- 4개의 장면이 자연스럽게 이어지는 하나의 짧은 영상일 것
+- 각 장면은 약 2초 정도의 흐름으로 느껴지게
+- 장면 전환은 자연스럽고 부드럽게
+- 인물의 얼굴, 옷, 그림체와 분위기를 유지할 것
+- 설명 자막이나 새 글자는 넣지 말 것
+- 영상은 수업 도입용이므로 과한 효과는 피할 것
+- 마지막 장면에서 학생들이
+  “왜 이렇게 다를까?”
+  하고 궁금해지게 만들 것</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="chatgpt">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">ChatGPT · 완성형 동화책 파일</h2>
+        <p class="section-desc">페이지 자체에 한글이 포함된 완성 이미지를 생성하고, 그 이미지를 그대로 PPTX/PDF로 묶습니다.</p>
+      </div>
+    </div>
+    <div class="grid">
+      
+      <article class="card" data-search="chatgpt 동화책 한방 pptx pdf 이미지 안 한글 210 210 ChatGPT 16. 한방 프롬프트 — 완성형 그림동화책 PPTX/PDF 교과서 PDF 하나로 ‘그림+한글이 이미지 안에 직접 생성된’ 8쪽 동화책 파일을 한 번에 만들 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">ChatGPT</span></div>
+          <h3 class="card-title">16. 한방 프롬프트 — 완성형 그림동화책 PPTX/PDF</h3>
+          <div class="label">상황</div>
+          <p class="situation">교과서 PDF 하나로 ‘그림+한글이 이미지 안에 직접 생성된’ 8쪽 동화책 파일을 한 번에 만들 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p16">전체 보기</button>
+              <button class="copy-btn" data-target="p16">복사</button>
+            </div>
+          </div>
+          <pre id="p16">첨부한 초등학교 교과서 자료를 바탕으로
+수업 도입에 바로 사용할 수 있는
+완성형 어린이 그림동화책을 제작해 줘.
+
+중요:
+아이디어나 초안만 제시하지 말고,
+최종 결과물인 그림동화책 PPTX와 PDF 파일까지 완성해 줘.
+
+━━━━━━━━━━━━━━━━━━
+[기본 목적]
+━━━━━━━━━━━━━━━━━━
+
+대상: 초등학교 3학년
+
+수업 주제:
+교통의 변화로 달라진 사람들의 생활 모습
+
+목적:
+교과 내용을 요약 설명하는 학습자료가 아니라,
+학생들이 짧은 이야기에 몰입하면서
+옛날과 오늘날의 이동 모습을 자연스럽게 비교하고,
+마지막 질문에 대해 생각하게 만드는
+수업 도입용 그림동화책
+
+첨부한 교과서 내용에 근거하고,
+교과서에 없는 구체적인 역사적 사실이나 수치는
+임의로 추가하지 마.
+
+━━━━━━━━━━━━━━━━━━
+[책 형식]
+━━━━━━━━━━━━━━━━━━
+
+- 실제 그림책처럼 보이는 판형으로 제작
+- 페이지 크기: 210mm × 210mm 정사각형
+- 총 8쪽 구성
+- 1쪽: 표지
+- 2~7쪽: 이야기
+- 8쪽: 마지막 질문 페이지
+- 일반 발표용 PPT처럼 보이지 말 것
+- 실제 어린이 그림책처럼 페이지마다 장면 중심으로 구성할 것
+
+━━━━━━━━━━━━━━━━━━
+[이야기 조건]
+━━━━━━━━━━━━━━━━━━
+
+짧은 동화 형식으로 구성해 줘.
+
+옛날에 사는 어린이와
+오늘날에 사는 어린이가
+각자의 시대에서 먼 곳으로 가는 모습을
+이야기처럼 보여 줘.
+
+학생들이 두 인물의 경험을 따라가며
+“왜 이렇게 다르지?”
+“옛날에는 이동이 왜 더 힘들었을까?”
+같은 궁금증을 느끼게 해 줘.
+
+정답이나 개념 설명을 초반에 직접 말하지 마.
+설명문보다 사건, 행동, 짧은 대화 중심으로 보여 줘.
+
+각 페이지의 글은
+초등학교 3학년이 읽기 쉬운
+짧은 1~2문장 정도로 구성해 줘.
+
+8쪽 마지막 페이지는
+정답 설명 없이
+
+“교통의 변화로 사람들의 생활 모습은 어떻게 달라졌을까요?”
+
+라는 질문으로 끝내 줘.
+
+━━━━━━━━━━━━━━━━━━
+[삽화와 한글 텍스트 생성 — 매우 중요]
+━━━━━━━━━━━━━━━━━━
+
+각 페이지를 &#x27;완성된 그림동화책 한 페이지 이미지&#x27;로 직접 생성해 줘.
+
+반드시 이미지 생성 단계에서
+삽화와 한글 문장을 하나의 완성된 페이지 디자인으로 함께 생성해 줘.
+
+즉,
+- 제목
+- 본문 1~2문장
+- 마지막 질문
+등 필요한 한글 텍스트가
+그림의 일부처럼 자연스럽게 이미지 안에 직접 생성되어야 한다.
+
+절대로
+먼저 글자 없는 삽화를 만든 뒤
+Python, HTML, PPT 텍스트 상자, 코드 등의 방식으로
+한글을 나중에 덧씌우지 마.
+
+PPT/PDF 제작을 위해
+별도의 텍스트 레이어를 코드로 추가하지 마.
+
+페이지 이미지를 생성할 때부터
+그림 + 한글 타이포그래피 + 여백 + 배치를
+하나의 완성된 그림책 페이지로 디자인해 줘.
+
+한글은 반드시 또렷하고 자연스럽게 보이게 하고,
+오탈자나 깨진 글자가 있으면 해당 페이지 이미지를 다시 생성해서 바로잡아 줘.
+
+━━━━━━━━━━━━━━━━━━
+[삽화 스타일]
+━━━━━━━━━━━━━━━━━━
+
+- 따뜻하고 세련된 현대 어린이 그림책 삽화 스타일
+- 등장인물의 얼굴, 머리 모양, 옷차림, 소품과 분위기를
+  모든 페이지에서 최대한 일관되게 유지
+- 그림책답게 장면의 몰입감이 느껴지게 할 것
+- 인물의 감정과 행동이 잘 드러나게 할 것
+- 페이지마다 그림 비중이 크고 텍스트는 적게
+- 표지는 이야기의 핵심 분위기를 담되 결론을 미리 보여 주지 말 것
+- 페이지마다 장면에 맞는 자연스러운 텍스트 위치와 여백을 설계할 것
+
+━━━━━━━━━━━━━━━━━━
+[디자인 지침]
+━━━━━━━━━━━━━━━━━━
+
+금지:
+- 불릿포인트
+- 학습목표 상자
+- 설명용 도표
+- 발표자료 템플릿 느낌
+- 페이지마다 똑같은 틀 반복
+- 코드로 만든 텍스트 박스를 삽화 위에 덧씌우는 방식
+
+허용:
+- 실제 그림책처럼 자유로운 레이아웃
+- 장면에 따라 달라지는 글의 위치와 크기
+- 여백을 활용한 감성적인 페이지 디자인
+- 장면의 감정에 어울리는 한글 타이포그래피
+
+━━━━━━━━━━━━━━━━━━
+[품질 검수]
+━━━━━━━━━━━━━━━━━━
+
+최종 결과물을 만들기 전에 스스로 전체를 확인해 줘.
+
+반드시 확인할 것:
+1. 교과서 내용과 어긋나지 않는가
+2. 초등학교 3학년 수준에 맞는가
+3. 페이지당 글이 지나치게 많지 않은가
+4. 한글 문장이 정확하고 또렷한가
+5. 등장인물이 같은 인물처럼 일관되게 보이는가
+6. 8쪽이 하나의 이야기로 자연스럽게 이어지는가
+7. 정답을 너무 일찍 설명하지 않는가
+8. 마지막 질문이 수업으로 자연스럽게 이어지는가
+9. 실제 출판 그림책의 한 페이지처럼 보이는가
+
+한글 오류나 인물 일관성 문제가 있는 페이지는
+해당 페이지 이미지를 다시 생성해서 수정한 뒤 사용해 줘.
+
+━━━━━━━━━━━━━━━━━━
+[최종 파일 제작 — 매우 중요]
+━━━━━━━━━━━━━━━━━━
+
+8장의 완성된 그림동화책 페이지 이미지를 만든 뒤,
+그 완성 이미지를 그대로 한 페이지씩 사용해서 파일을 만들어 줘.
+
+1. PPTX
+- 슬라이드 크기: 210mm × 210mm
+- 각 슬라이드에는 완성된 페이지 이미지를 전체 화면으로 그대로 배치
+- 이미지 위에 코드나 텍스트 상자로 글을 다시 쓰거나 덧씌우지 말 것
+
+2. PDF
+- 동일한 210mm × 210mm 판형
+- 같은 8장의 완성 페이지 이미지를 순서대로 배치
+- 바로 수업에 보여 주거나 배포할 수 있는 상태
+
+초안, 개요, 일부 시안만 제시하지 말고
+이미지 생성부터 최종 PPTX/PDF 파일까지 계속 진행해 줘.
+
+중간에 사소한 디자인 결정을 나에게 다시 묻지 말고
+수업 목적과 그림책 완성도를 기준으로 스스로 결정해 줘.
+
+최종 답변에는
+완성된 PPTX와 PDF 파일 링크와
+아주 짧은 결과 요약만 제시해 줘.</pre>
+        </div>
+      </article>
+      <article class="card" data-search="chatgpt 동화책 수정 한글 오류 인물 일관성 ChatGPT 17. 동화책 결과 보정 프롬프트 글, 그림책 느낌, 인물 일관성, 한글 오류, 정답 노출을 보정할 때">
+        <div class="card-top">
+          <div class="tool-row"><span class="tool-badge">ChatGPT</span></div>
+          <h3 class="card-title">17. 동화책 결과 보정 프롬프트</h3>
+          <div class="label">상황</div>
+          <p class="situation">글, 그림책 느낌, 인물 일관성, 한글 오류, 정답 노출을 보정할 때</p>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head">
+            <div class="label">프롬프트</div>
+            <div class="actions">
+              <button class="expand-btn" data-target="p17">전체 보기</button>
+              <button class="copy-btn" data-target="p17">복사</button>
+            </div>
+          </div>
+          <pre id="p17">[글이 너무 많을 때]
+전체적으로 좋은데 글이 많아.
+각 페이지의 글을 1~2문장 이내로 더 줄이고,
+설명문보다 행동과 장면 중심으로 다시 만들어 줘.
+
+[그림책 느낌이 약할 때]
+전체적으로 PPT 느낌이 난다.
+실제 어린이 그림책처럼
+장면 중심, 큰 삽화, 적은 글, 자유로운 레이아웃으로 다시 디자인해 줘.
+
+[인물 일관성이 흔들릴 때]
+등장인물의 얼굴, 머리 모양, 옷차림과 소품이 페이지마다 달라진다.
+같은 인물처럼 보이도록 캐릭터 디자인을 더 강하게 고정해서
+문제가 있는 페이지만 다시 생성해 줘.
+
+[한글이 틀렸을 때]
+해당 페이지의 구성과 그림 분위기는 유지하되,
+틀린 한글 문장을 정확한 문장으로 고쳐서
+페이지 전체 이미지를 다시 생성해 줘.
+텍스트를 코드나 텍스트 상자로 덧씌우지 말고
+이미지 생성 단계에서 한글을 정확하게 다시 생성해 줘.
+
+[정답을 너무 많이 알려줄 때]
+동기유발 자료이므로 정답을 너무 직접 설명하지 말아 줘.
+학생이 스스로 비교하고 궁금해하도록
+결론을 줄이고 마지막 질문의 여운을 더 크게 만들어 줘.</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div id="empty" class="empty">검색 결과가 없습니다.</div>
+  <div class="footer">AI 동화·영상 교수학습자료 제작 연수 · Prompt Library<br>복사 버튼으로 바로 실습하고, 긴 프롬프트는 ‘전체 보기’로 펼칠 수 있습니다.</div>
+</main>
+
+<script>
+const copyButtons=document.querySelectorAll('.copy-btn');
+copyButtons.forEach(btn=>{
+  btn.addEventListener('click',async()=>{
+    const el=document.getElementById(btn.dataset.target);
+    const text=el.innerText;
+    try{
+      await navigator.clipboard.writeText(text);
+      const old=btn.textContent;
+      btn.textContent='복사됨';
+      btn.style.background='#fff';
+      btn.style.color='#111';
+      setTimeout(()=>{btn.textContent=old;btn.style.background='';btn.style.color=''},1300);
+    }catch(e){
+      const ta=document.createElement('textarea');
+      ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+      btn.textContent='복사됨';setTimeout(()=>btn.textContent='복사',1300);
+    }
+  });
+});
+
+const expandButtons=document.querySelectorAll('.expand-btn');
+expandButtons.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const el=document.getElementById(btn.dataset.target);
+    const expanded=el.classList.toggle('expanded');
+    btn.textContent=expanded?'접기':'전체 보기';
+  });
+});
+
+const search=document.getElementById('search');
+const cards=[...document.querySelectorAll('.card')];
+const sections=[...document.querySelectorAll('.section')];
+const empty=document.getElementById('empty');
+search.addEventListener('input',()=>{
+  const q=search.value.trim().toLowerCase();
+  let total=0;
+  cards.forEach(card=>{
+    const text=(card.dataset.search+' '+card.innerText).toLowerCase();
+    const show=text.includes(q);
+    card.style.display=show?'':'none';
+    if(show)total++;
+  });
+  sections.forEach(section=>{
+    const visible=[...section.querySelectorAll('.card')].some(card=>card.style.display!=='none');
+    section.style.display=visible?'':'none';
+  });
+  empty.style.display=total===0?'block':'none';
+});
+</script>
+</body>
+</html>
